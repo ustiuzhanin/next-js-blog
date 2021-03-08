@@ -1,7 +1,7 @@
 import classes from "./MeetupDetail.module.css";
 
 function MeetupDetail(props) {
-  const { image, title, description, address } = props;
+  const { image, title, description, address } = props.meetup;
   return (
     <section className={classes.detail}>
       <h1>{title}</h1>

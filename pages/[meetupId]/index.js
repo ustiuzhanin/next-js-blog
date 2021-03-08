@@ -1,9 +1,17 @@
 import { MongoClient, ObjectId } from "mongodb";
-
+import Head from "next/head";
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 
 function MeetupDetails(props) {
-  return <MeetupDetail meetup={props.meetupData} />;
+  return (
+    <>
+      <Head>
+        <title>{props.meetupData.title}</title>
+        <meta name='description' content={props.meetupData.description} />
+      </Head>
+      <MeetupDetail meetup={props.meetupData} />;
+    </>
+  );
 }
 
 export async function getStaticPaths() {
@@ -23,7 +31,7 @@ export async function getStaticPaths() {
       params: { meetupId: meetup._id.toString() },
     })),
 
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
